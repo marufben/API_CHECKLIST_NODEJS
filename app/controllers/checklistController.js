@@ -110,7 +110,7 @@ exports.setStatusById = async(req, res) => {
 exports.deleteItemById = async(req, res) => {
     try {
         const { id, item } = req.params;
-        return await ChecklistItem.destroy({ where: { id, checklist_id: item } })
+        return await ChecklistItem.destroy({ where: { id:item } })
           .then((item) => { 
             if (item) {
                  res.status(201).json({ message: 'success' }); 
@@ -125,10 +125,10 @@ exports.deleteItemById = async(req, res) => {
 exports.renameItemById = async(req, res) => {
     try {
         const { id, item } = req.params;
-        const { itemName } = req.body;
-        return await ChecklistItem.update({ itemName }, { where: { checklist_id: id, id: item } })
+        const { item_name } = req.body;
+        return await ChecklistItem.update({ item_name }, { where: { checklist_id: id, id: item } })
           .then((item) => 
-            res.json({ message: 'success', data: item })
+            res.json({ message: 'success' })
             )
           .catch((err) => 
             res.status(400).json({ err })

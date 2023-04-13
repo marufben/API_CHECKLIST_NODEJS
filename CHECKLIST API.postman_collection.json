@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "d573a8ee-c84c-4346-b623-18bc3d7e3184",
+		"name": "CHECKLIST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "642422"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\":\"marufben@gmail.com\",\r\n\"password\":\"abcd1234\",\r\n\"fullname\":\"Muhammad Maruf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson= pm.response.json()",
+							"console.log(responseJson.accessToken)",
+							"pm.environment.set('token', responseJson.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"marufben@gmail.com\",\n    \"password\":\"abcd1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create checklist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"bikin task\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_name\":\"bikin bikin baju anak\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists/66e5c963-01f5-4740-862b-3de57eb4daf1/item",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists",
+						"66e5c963-01f5-4740-862b-3de57eb4daf1",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get checklist item all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"bikin task\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists/6d950f27-858d-494e-b3bf-5e548755d3b6/item",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists",
+						"6d950f27-858d-494e-b3bf-5e548755d3b6",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get checklist all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"bikin task\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Status Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists/6d950f27-858d-494e-b3bf-5e548755d3b6/item/4328411e-6476-457f-9084-494683c846ff",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists",
+						"6d950f27-858d-494e-b3bf-5e548755d3b6",
+						"item",
+						"4328411e-6476-457f-9084-494683c846ff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists/6d950f27-858d-494e-b3bf-5e548755d3b6/item/4328411e-6476-457f-9084-494683c846ff",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists",
+						"6d950f27-858d-494e-b3bf-5e548755d3b6",
+						"item",
+						"4328411e-6476-457f-9084-494683c846ff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_name\":\"COba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/checklists/6d950f27-858d-494e-b3bf-5e548755d3b6/item/rename/bbcf0a9d-0214-4125-8206-3f77b1fae179",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checklists",
+						"6d950f27-858d-494e-b3bf-5e548755d3b6",
+						"item",
+						"rename",
+						"bbcf0a9d-0214-4125-8206-3f77b1fae179"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
