@@ -27,7 +27,7 @@ try {
         console.log("Failed to sync db: " + err.message);
     });
 
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 3000, () => {
     console.log(`Connected to ${process.env.PORT}`);
 });
 } catch (error) {
