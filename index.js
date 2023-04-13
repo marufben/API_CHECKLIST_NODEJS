@@ -8,6 +8,9 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+const db = require("./app/models");
+
+
 
 app.get('*', function(req, res){
     res.status(400).send({
@@ -16,6 +19,14 @@ app.get('*', function(req, res){
 })
 
 try {
+    db.sequelize.sync()
+    .then(() => {
+        console.log("Synced db.");
+    })
+    .catch((err) => {
+        console.log("Failed to sync db: " + err.message);
+    });
+    
     app.listen(process.env.PORT, () => {
     console.log(`Connected to ${process.env.PORT}`);
 });
