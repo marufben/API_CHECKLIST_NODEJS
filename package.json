@@ -1,0 +1,14 @@
+{
+  "name": "api_checklist_node",
+  "version": "1.0.0",
+  "description": "TEST BTS.id ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marufben@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
