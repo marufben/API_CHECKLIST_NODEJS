@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 const db = require("./app/models");
 
-
+require('./app/routes')(app, express);
 
 app.get('*', function(req, res){
     res.status(400).send({
@@ -26,7 +26,7 @@ try {
     .catch((err) => {
         console.log("Failed to sync db: " + err.message);
     });
-    
+
     app.listen(process.env.PORT, () => {
     console.log(`Connected to ${process.env.PORT}`);
 });

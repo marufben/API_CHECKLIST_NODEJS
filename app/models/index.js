@@ -21,5 +21,16 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("./user.model.js")(sequelize, Sequelize);
+db.checklist = require("./checklist.model.js")(sequelize, Sequelize);
+db.checklistItem = require("./checklistItem.model.js")(sequelize, Sequelize);
+
+db.checklistItem.belongsTo(db.checklist, {
+  foreignKey: "checklist_id",
+  as: "checklist",
+});
+db.checklist.hasMany(db.checklistItem, {
+  foreignKey: "checklist_id",
+  as: "items",
+});
 
 module.exports = db;
